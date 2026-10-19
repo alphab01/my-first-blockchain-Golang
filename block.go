@@ -21,17 +21,17 @@ func eqb(p []byte, m []byte) bool {
   a := len(p)
   for i := range a {
     if (p[i] != m[i]) {
-      return 0
+      return false
     }
   }
-  return 1
+  return true
 }
 
 func checkbc(bc []block) int {
   b1 := bc[0]
   for _, s := range bc {
     if (s.I > 0) {
-      if (s.Prh != b1.Myh) {
+      if (!(eqb(s.Prh, b1.Myh))) {
         return 0
       }
       b1 = s
