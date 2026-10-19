@@ -17,6 +17,19 @@ type block struct {
   To string
 }
 
+func checkbc(bc []block) int {
+  b1 := bc[0]
+  for _, s := range bc {
+    if (s.I > 0) {
+      if (s.Prh != b1.Myh) {
+        return 0
+      }
+      b1 = s
+    }
+  }
+  return 1
+}
+
 func begin() block {
   h := sha256.New()
   s := fmt.Sprintf("%d %s %s %x %d %s %s", 0, time.Now(), "init", []byte("all usrs have 73"), 0, "x", "x")
