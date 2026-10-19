@@ -17,11 +17,11 @@ type block struct {
   To string
 }
 
-func init() block {
+func begin() block {
   h := sha256.New()
   s := fmt.Sprintf("%d %s %s %x %d %s %s", 0, time.Now(), "init", []byte("all usrs have 73"), 0, "x", "x")
   h.Write([]byte(s))
-  b = block{I: 0, T: time.Now(), Mv: "init", Myh: h.Sum(nil), Prh: []byte("all usrs have 73"), Sum: 0, F: "x", To: "x"}
+  b := block{I: 0, T: time.Now(), Mv: "init", Myh: h.Sum(nil), Prh: []byte("all usrs have 73"), Sum: 0, F: "x", To: "x"}
   return b
 }
 
