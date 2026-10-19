@@ -47,10 +47,16 @@ func main() {
         nbc := b1.addop(mv1, f1, to1, sum1)
         bc = append(bc, nbc)
         b1 = nbc
+        if (checkbc(bc) == 0) {
+          fmt.Println("Error, hash not good")
+        }
       } else if (mv1 == "<-" && sumb(bc, to1) >= sum1) {
         nbc := b1.addop(mv1, f1, to1, sum1)
         bc = append(bc, nbc)
         b1 = nbc
+        if (checkbc(bc) == 0) {
+          fmt.Println("err")
+        }
       } else {
         fmt.Println("bbno$")
       }

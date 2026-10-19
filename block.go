@@ -17,6 +17,16 @@ type block struct {
   To string
 }
 
+func eqb(p []byte, m []byte) bool {
+  a := len(p)
+  for i := range a {
+    if (p[i] != m[i]) {
+      return 0
+    }
+  }
+  return 1
+}
+
 func checkbc(bc []block) int {
   b1 := bc[0]
   for _, s := range bc {
