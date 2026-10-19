@@ -9,4 +9,6 @@ type block struct {
   myh []byte
   prh []byte
   sum int
+  f string
+  t string
 }
