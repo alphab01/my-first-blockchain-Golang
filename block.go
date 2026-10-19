@@ -19,7 +19,8 @@ type block struct {
 
 func (b block) addop(mv1 string, f1 string, to1 string, sum1 int) block {
   h := sha256.New()
-  s := fmt.Sprintf("%d %s %x %d %s %s", b.i + 1, mv1, b.myh, sum1, f1, to1)
-  b2 := block{I: b.i + 1, T: time.Now(), Mv: mv1, Myh: s, Prh: b.myh, Sum: sum1, F: f1, To: to1}
+  s := fmt.Sprintf("%d %s %x %d %s %s", b.I + 1, mv1, b.Myh, sum1, f1, to1)
+  h.Write([]byte(s))
+  b2 := block{I: b.I + 1, T: time.Now(), Mv: mv1, Myh: h.Sum(nil), Prh: b.Myh, Sum: sum1, F: f1, To: to1}
   return b2
 }
