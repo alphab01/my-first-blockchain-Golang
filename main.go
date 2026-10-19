@@ -17,7 +17,7 @@ func main() {
       break
     } else if (a == 2) {
       var d string
-      fmt.Scan(&c)
+      fmt.Scan(&d)
       c := 100
       for _, s := range bc {
         if (s.I != 0 && (s.F == d)) {
