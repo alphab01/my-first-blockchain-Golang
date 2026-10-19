@@ -7,7 +7,7 @@ import (
 func main() {
   bc := []block{}
   var b1 block
-  b1.init()
+  b1 = init()
   bc = append(bc, b1)
   for {
     var a int
@@ -18,7 +18,7 @@ func main() {
     } else if (a == 2) {
       var d string
       fmt.Scan(&d)
-      c := 100
+      c := 73
       for _, s := range bc {
         if (s.I != 0 && (s.F == d)) {
           if (s.Mv == "->") {
