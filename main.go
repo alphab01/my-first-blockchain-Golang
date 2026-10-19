@@ -35,6 +35,13 @@ func main() {
         }
       }
       fmt.Println(c)
+    } else {
+      var mv1, f1, to1 string
+      var sum1 int
+      fmt.Scan(&mv1, &f1, &to1, &sum1)
+      nbc := b1.addop(mv1, f1, to1, sum1)
+      bc = append(bc, nbc)
+      b1 = nbc
     }
   }
 }
