@@ -4,6 +4,7 @@ import (
   "time"
   "crypto/sha256"
   "fmt"
+  "encoding/json"
 )
 
 type block struct {
@@ -54,4 +55,12 @@ func (b block) addop(mv1 string, f1 string, to1 string, sum1 int) block {
   h.Write([]byte(s))
   b2 := block{I: b.I + 1, T: time.Now(), Mv: mv1, Myh: h.Sum(nil), Prh: b.Myh, Sum: sum1, F: f1, To: to1}
   return b2
+}
+
+func (b block) savebc() {
+  dat, err := json.Marshal(b)
+  if (err != nil) {
+    return
+  }
+  fmt.Println(string(dat))
 }
