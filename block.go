@@ -6,7 +6,6 @@ import (
   "fmt"
   "encoding/json"
   "os"
-  "crypto/aes"
 )
 
 type block struct {
@@ -59,19 +58,26 @@ func (b block) addop(mv1 string, f1 string, to1 string, sum1 int) block {
   return b2
 }
 
-func (b block) saveb() {
+func (b block) saveb(s string) {
   dat, err := json.Marshal(b)
   if (err != nil) {
     return
   }
-  b, err := aes.NewCipher([]byte("in next commit key need here"))
-  if (err != nil) {
-    return
-  }
-  f, err := os.Create("Genesis")
+  f, err := os.Create(s)
   if (err != nil) {
     return
   }
   f.WriteString(string(dat))
   f.Close()
+}
+
+func savebc(bc []block) {
+  for i := range len(bc) {
+    if (bc[i].I == 0) {
+      bc[i].saveb("Genesis")
+    } else {
+      s := fmt.Sprintf("b%s", bc[i].I)
+      bc[i].saveb(s)
+    }
+  }
 }

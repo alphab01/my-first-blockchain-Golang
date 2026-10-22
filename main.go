@@ -34,6 +34,7 @@ func main() {
     fmt.Println("1 - add opp\n\n2 - sum of usr\n\n3 - exit")
     fmt.Scan(&a)
     if (a == 3) {
+      savebc(bc)
       break
     } else if (a == 2) {
       var d string
