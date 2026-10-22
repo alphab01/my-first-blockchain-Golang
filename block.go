@@ -6,6 +6,7 @@ import (
   "fmt"
   "encoding/json"
   "os"
+  "crypto/aes"
 )
 
 type block struct {
@@ -63,7 +64,10 @@ func (b block) saveb() {
   if (err != nil) {
     return
   }
-  fmt.Println(string(dat))
+  b, err := aes.NewCipher([]byte("in next commit key need here"))
+  if (err != nil) {
+    return
+  }
   f, err := os.Create("Genesis")
   if (err != nil) {
     return
