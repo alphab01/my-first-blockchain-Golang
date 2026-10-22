@@ -76,7 +76,7 @@ func savebc(bc []block) {
     if (bc[i].I == 0) {
       bc[i].saveb("Genesis")
     } else {
-      s := fmt.Sprintf("b%s", bc[i].I)
+      s := fmt.Sprintf("b%d", bc[i].I)
       bc[i].saveb(s)
     }
   }
