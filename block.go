@@ -5,6 +5,7 @@ import (
   "crypto/sha256"
   "fmt"
   "encoding/json"
+  "os"
 )
 
 type block struct {
@@ -57,10 +58,16 @@ func (b block) addop(mv1 string, f1 string, to1 string, sum1 int) block {
   return b2
 }
 
-func (b block) savebc() {
+func (b block) saveb() {
   dat, err := json.Marshal(b)
   if (err != nil) {
     return
   }
   fmt.Println(string(dat))
+  f, err := os.Create("Genesis")
+  if (err != nil) {
+    return
+  }
+  f.WriteString(string(dat))
+  f.Close()
 }
