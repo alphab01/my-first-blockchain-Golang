@@ -10,17 +10,9 @@ func sumb(bc []block, d string) int {
   for _, s := range bc {
     for _, o := range s.Mem {
       if (s.I != 0 && (o.F == d)) {
-        if (o.F == d) {
-          c -= o.Sum
-        } else {
-          c += o.Sum
-        }
+        c -= o.Sum
       } else if (s.I != 0 && o.To == d) {
-        if (o.F == d) {
-          c += o.Sum
-        } else {
-          c -= o.Sum
-        }
+        c += o.Sum
       }
     }
   }
@@ -35,7 +27,7 @@ func main() {
   var transact []op
   for {
     var a int
-    fmt.Println("1 - add opp\n\n2 - sum of usr\n\n3 - exit")
+    fmt.Println("1 - add opp\n\n2 - sum of usr\n\n3 - exit\n\n4 - save transact")
     fmt.Scan(&a)
     if (a == 3) {
       savebc(bc)
@@ -46,7 +38,7 @@ func main() {
       var d string
       fmt.Scan(&d)
       fmt.Println(sumb(bc, d))
-    } else {
+    } else if (a == 1){
       var add op
       fmt.Scan(&add.Sum, &add.F, &add.To)
       add.T = time.Now()
@@ -73,6 +65,9 @@ func main() {
         fmt.Println("bbno$")
       }
 */
+    } else {
+      bc = append(bc, b1.addop(transact))
+      transact = nil
     }
   }
 }
