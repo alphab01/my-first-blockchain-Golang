@@ -30,10 +30,10 @@ func main() {
     fmt.Println("1 - add opp\n\n2 - sum of usr\n\n3 - exit\n\n4 - save transact")
     fmt.Scan(&a)
     if (a == 3) {
-      savebc(bc)
       b1 = b1.addop(transact)
       bc = append(bc, b1)
       transact = nil
+      savebc(bc)
       break
     } else if (a == 2) {
       var d string

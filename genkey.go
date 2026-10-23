@@ -2,16 +2,15 @@ package main
 
 import (
   "fmt"
-  //"crypto/ed25519"
+  "crypto/ed25519"
+  "crypto/sha256"
 )
 
 func main() {
   fmt.Println("enter login")
   var s string
   fmt.Scan(&s)
-  c := 0
-  for i := range s {
-    c += int(s[i])
-  }
-  fmt.Println(c)
+  s2 := sha256.Sum256([]byte(s))
+  priv := ed25519.NewKeyFromSeed(s2[:])
+  fmt.Printf("%x", priv)
 }
