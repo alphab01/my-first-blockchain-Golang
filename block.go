@@ -4,8 +4,8 @@ import (
   "time"
   "crypto/sha256"
   "fmt"
-  //"encoding/json"
-  //"os"
+  "encoding/json"
+  "os"
 )
 
 type op struct {
@@ -63,7 +63,7 @@ func (b block) addop(add []op) block {
   b2 := block{I: b.I + 1, T: t, Myh: h.Sum(nil), Prh: b.Myh, Mem: add}
   return b2
 }
-/*
+
 func (b block) saveb(s string) {
   dat, err := json.Marshal(b)
   if (err != nil) {
@@ -87,4 +87,3 @@ func savebc(bc []block) {
     }
   }
 }
-*/
