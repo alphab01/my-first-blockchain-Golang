@@ -5,25 +5,27 @@ import (
   "time"
 )
 
-/*func sumb(bc []block, d string) int {
+func sumb(bc []block, d string) int {
   c := 73
   for _, s := range bc {
-    if (s.I != 0 && (s.F == d)) {
-      if (s.Mv == "->") {
-        c -= s.Sum
-      } else {
-        c += s.Sum
-      }
-    } else if (s.I != 0 && s.To == d) {
-      if (s.Mv == "->") {
-        c += s.Sum
-      } else {
-        c -= s.Sum
+    for _, o := range s.Mem {
+      if (s.I != 0 && (o.F == d)) {
+        if (o.F == d) {
+          c -= o.Sum
+        } else {
+          c += o.Sum
+        }
+      } else if (s.I != 0 && o.To == d) {
+        if (o.F == d) {
+          c += o.Sum
+        } else {
+          c -= o.Sum
+        }
       }
     }
   }
   return c
-}*/
+}
 
 func main() {
   bc := []block{}
@@ -41,9 +43,9 @@ func main() {
       transact = nil
       break
     } else if (a == 2) {
-      /*var d string
+      var d string
       fmt.Scan(&d)
-      fmt.Println(sumb(bc, d))*/
+      fmt.Println(sumb(bc, d))
     } else {
       var add op
       fmt.Scan(&add.Sum, &add.F, &add.To)
