@@ -18,10 +18,9 @@ type op struct {
 type block struct {
   I uint
   T time.Time
-  Mv string
   Myh []byte
   Prh []byte
-  mem []op
+  Mem []op
 }
 
 func eqb(p []byte, m []byte) bool {
@@ -50,21 +49,21 @@ func checkbc(bc []block) int {
 func begin() block {
   h := sha256.New()
   t := time.Now()
-  s := fmt.Sprintf("%d %s %s %x %d %s %s", 0, t, "init", []byte("all usrs have 73"), 0, "x", "x")
+  s := fmt.Sprintf("%d %s %x %v", 0, t, "init", []byte("all usrs have 73"), nil)
   h.Write([]byte(s))
-  b := block{I: 0, T: t, Mv: "init", Myh: h.Sum(nil), Prh: []byte("all usrs have 73"), Sum: 0, F: "x", To: "x"}
+  b := block{I: 0, T: t, Myh: h.Sum(nil), Prh: []byte("all usrs have 73"), Mem: nil}
   return b
 }
 
-func (b block) addop(mv1 string, f1 string, to1 string, sum1 int) block {
+func (b block) addop(add []op) block {
   h := sha256.New()
   t := time.Now()
-  s := fmt.Sprintf("%d %s %s %x %d %s %s", b.I + 1, t, mv1, b.Myh, sum1, f1, to1)
+  s := fmt.Sprintf("%d %s %x %v", b.I + 1, t, b.Myh, add)
   h.Write([]byte(s))
-  b2 := block{I: b.I + 1, T: t, Mv: mv1, Myh: h.Sum(nil), Prh: b.Myh, Sum: sum1, F: f1, To: to1}
+  b2 := block{I: b.I + 1, T: t, Myh: h.Sum(nil), Prh: b.Myh, Mem: add}
   return b2
 }
-
+/*
 func (b block) saveb(s string) {
   dat, err := json.Marshal(b)
   if (err != nil) {
@@ -88,3 +87,4 @@ func savebc(bc []block) {
     }
   }
 }
+*/
