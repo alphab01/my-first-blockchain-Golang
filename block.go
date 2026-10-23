@@ -8,15 +8,20 @@ import (
   "os"
 )
 
+type op struct {
+  T time.Time
+  Sum int
+  F string
+  To string
+}
+
 type block struct {
   I uint
   T time.Time
   Mv string
   Myh []byte
   Prh []byte
-  Sum int
-  F string
-  To string
+  mem []op
 }
 
 func eqb(p []byte, m []byte) bool {
