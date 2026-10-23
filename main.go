@@ -31,7 +31,8 @@ func main() {
     fmt.Scan(&a)
     if (a == 3) {
       savebc(bc)
-      bc = append(bc, b1.addop(transact))
+      b1 = b1.addop(transact)
+      bc = append(bc, b1)
       transact = nil
       break
     } else if (a == 2) {
@@ -44,7 +45,8 @@ func main() {
       add.T = time.Now()
       transact = append(transact, add)
       if len(transact) == 5 {
-        bc = append(bc, b1.addop(transact))
+        b1 = b1.addop(transact)
+        bc = append(bc, b1)
         transact = nil
       }
 /*      if (mv1 == "->" && sumb(bc, f1) >= sum1) {
@@ -66,7 +68,8 @@ func main() {
       }
 */
     } else {
-      bc = append(bc, b1.addop(transact))
+      b1 = b1.addop(transact)
+      bc = append(bc, b1)
       transact = nil
     }
   }
