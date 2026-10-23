@@ -28,9 +28,10 @@ func main() {
   fmt.Scan(&d1, &d2)
   f1, _ := os.Open(d1)
   d4 := make([]byte, 64)
-  d3 := f1.Read(d4)
-  pr := sha256.Sum256([]byte(s + s1))
-  if (d4[:d3] == ed25519.NewKeyFromSeed(pr[:])) {
+  d3, _ := f1.Read(d4)
+  pr := sha256.Sum256([]byte(d1 + d2))
+  hlp := ed25519.NewKeyFromSeed(pr[:])
+  if (string(d4[:d3]) == string(hlp)) {
     fmt.Println("Good")
     bc := []block{}
     var b1 block
