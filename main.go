@@ -22,6 +22,25 @@ func sumb(bc []block, d string) int {
   return c
 }
 
+func rega() bool {
+  fmt.Println("enter login + pass")
+  var s1, s2 string
+  fmt.Scan(&s1, &s2)
+  f, err := os.Open(s1)
+  if (err != nil) {
+    pr := sha256.Sum256([]byte(s1 + s2))
+    hlp := ed25519.NewKeyFromSeed(pr[:])
+    f, _ := os.Create(s1)
+    f.Write(hlp)
+  } else {
+    s3 := make([]byte, 64)
+    s4, _ := f.Read(s3)
+    if (string(s3[:s4]) == string(hlp)) {
+      fmt.Println("Good")
+    }
+  }
+}
+
 func main() {
   fmt.Println("enter login + pass")
   var d1, d2 string
