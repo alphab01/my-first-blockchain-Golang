@@ -32,11 +32,16 @@ func rega() bool {
     hlp := ed25519.NewKeyFromSeed(pr[:])
     f, _ := os.Create(s1)
     f.Write(hlp)
+    retrun true
   } else {
     s3 := make([]byte, 64)
     s4, _ := f.Read(s3)
     if (string(s3[:s4]) == string(hlp)) {
       fmt.Println("Good")
+      return true
+    } else {
+      fmt.Println("try again")
+      return false
     }
   }
 }
